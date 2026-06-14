@@ -1,0 +1,39 @@
+# Multi-Modal Deepfake Defense Gateway: Phase 1 - Blink Detection
+
+This phase focuses on building the **Vision Engine's core component**: the real-time Blink Detector. It uses the Eye Aspect Ratio (EAR) metric to analyze the physical integrity of a user's biological behavior.
+
+## User Review Required
+
+> [!IMPORTANT]
+> This script requires a working webcam and will request access to it.
+> Since it uses `mediapipe`, the first run might take a few seconds to initialize the AI models.
+
+## Proposed Changes
+
+### [Core Engine]
+
+#### [NEW] [blink_detector.py](file:///C:/Users/HP%20USER/.gemini/antigravity/scratch/deepfake_defense_gateway/blink_detector.py)
+A Python script that:
+- Initializes the webcam stream.
+- Loads MediaPipe Face Mesh for real-time 3D landmark tracking.
+- Calculates the **Eye Aspect Ratio (EAR)** for both eyes.
+- Maintains a state machine to count blinks and detect "Deepfake anomalies" (e.g., impossible blink speeds).
+- Renders a high-tech scanner HUD (Heads-Up Display) overlay.
+
+#### [NEW] [requirements.txt](file:///C:/Users/HP%20USER/.gemini/antigravity/scratch/deepfake_defense_gateway/requirements.txt)
+Defines the necessary libraries:
+- `mediapipe`
+- `opencv-python`
+- `numpy`
+- `scipy`
+
+## Verification Plan
+
+### Automated Tests
+- Run `python blink_detector.py` and verify that the webcam opens.
+- Observe the "EAR" graph and verify it drops when eyes are closed.
+- Verify that the blink counter increments correctly.
+
+### Manual Verification
+- Test natural blinking vs. forced slow blinking to see how the system logs the behavior.
+- Use a photo of a face (which doesn't blink) to ensure the system remains at zero blinks and identifies "No Biological Activity Detected".
